@@ -5,14 +5,15 @@ import { Catch } from '../lib/db';
 import DuplicateBadge from './DuplicateBadge';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  cardBg: '#FFFFFF',
+  border: '#DDE8E2',
+  muted: '#9BB5A8',
 };
 
 interface CatchCardProps {
@@ -40,7 +41,7 @@ export default function CatchCard({ catchItem, showLinea = false }: CatchCardPro
   return (
     <TouchableOpacity
       style={styles.card}
-      activeOpacity={0.75}
+      activeOpacity={0.8}
       onPress={() => router.push(`/catch/${catchItem.id}`)}
     >
       <View style={styles.header}>
@@ -77,23 +78,26 @@ export default function CatchCard({ catchItem, showLinea = false }: CatchCardPro
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 10,
-    padding: 14,
-    marginBottom: 10,
+    backgroundColor: Colors.white,
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
+    elevation: 3,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   lineaLabel: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 32,
-    color: Colors.yellow,
+    color: Colors.secondary,
     lineHeight: 34,
   },
   badges: {
@@ -103,16 +107,16 @@ const styles = StyleSheet.create({
   details: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   detailItem: {
     flex: 1,
   },
   divider: {
     width: 1,
-    height: 32,
-    backgroundColor: Colors.cardBorder,
-    marginHorizontal: 12,
+    height: 36,
+    backgroundColor: Colors.border,
+    marginHorizontal: 14,
   },
   detailLabel: {
     fontFamily: 'DMSans_400Regular',
@@ -120,12 +124,13 @@ const styles = StyleSheet.create({
     color: Colors.muted,
     letterSpacing: 1,
     marginBottom: 2,
+    fontWeight: '600',
   },
   detailValue: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 22,
-    color: Colors.offWhite,
-    lineHeight: 24,
+    fontSize: 24,
+    color: Colors.secondary,
+    lineHeight: 26,
   },
   timestamp: {
     fontFamily: 'DMSans_400Regular',
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   notes: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 13,
-    color: Colors.offWhite,
+    color: Colors.tertiary,
     marginTop: 8,
     fontStyle: 'italic',
   },

@@ -10,14 +10,12 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
 };
 
 interface StampAnimationProps {
@@ -94,23 +92,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 100,
+    backgroundColor: 'rgba(242, 247, 244, 0.7)',
   },
   stamp: {
-    borderWidth: 4,
-    borderRadius: 10,
-    paddingHorizontal: 28,
-    paddingVertical: 18,
+    borderWidth: 3,
+    borderRadius: 20,
+    paddingHorizontal: 32,
+    paddingVertical: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    transform: [{ rotate: '-8deg' }],
+    transform: [{ rotate: '-6deg' }],
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 12,
   },
   stampSuccess: {
-    borderColor: Colors.yellow,
-    backgroundColor: 'rgba(13,13,13,0.92)',
+    borderColor: Colors.primary,
+    backgroundColor: Colors.white,
+    shadowColor: Colors.secondary,
   },
   stampDuplicate: {
-    borderColor: Colors.orange,
-    backgroundColor: 'rgba(13,13,13,0.92)',
+    borderColor: Colors.tertiary,
+    backgroundColor: Colors.white,
+    shadowColor: Colors.tertiary,
   },
   stampText: {
     fontFamily: 'BebasNeue_400Regular',
@@ -118,15 +123,15 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   stampTextSuccess: {
-    color: Colors.yellow,
+    color: Colors.primary,
   },
   stampTextDuplicate: {
-    color: Colors.orange,
+    color: Colors.tertiary,
   },
   stampSubtext: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 14,
-    color: Colors.orange,
+    color: Colors.tertiary,
     marginTop: 2,
   },
 });

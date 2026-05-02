@@ -4,10 +4,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  offWhite: '#F0EDE8',
-  muted: '#666',
+  bg: '#F2F7F4',
+  secondary: '#0C3B2E',
+  accent: '#FFBA00',
+  muted: '#9BB5A8',
+  white: '#FFFFFF',
 };
 
 type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
@@ -28,9 +29,10 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: styles.tabBar,
-        tabBarActiveTintColor: Colors.yellow,
+        tabBarActiveTintColor: Colors.secondary,
         tabBarInactiveTintColor: Colors.muted,
         tabBarLabelStyle: styles.tabLabel,
+        tabBarActiveBackgroundColor: 'transparent',
       }}
     >
       <Tabs.Screen
@@ -66,13 +68,21 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: '#0D0D0D',
-    borderTopColor: '#2A2A2A',
+    backgroundColor: Colors.white,
+    borderTopColor: '#DDE8E2',
     borderTopWidth: 1,
+    height: 64,
+    paddingBottom: 8,
+    paddingTop: 8,
+    shadowColor: '#0C3B2E',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 8,
   },
   tabLabel: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 11,
+    fontSize: 10,
     letterSpacing: 0.5,
   },
 });

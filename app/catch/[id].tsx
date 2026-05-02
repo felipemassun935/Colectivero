@@ -14,14 +14,15 @@ import { getCatchById, Catch } from '../../lib/db';
 import DuplicateBadge from '../../components/DuplicateBadge';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  cardBg: '#FFFFFF',
+  border: '#DDE8E2',
+  muted: '#9BB5A8',
 };
 
 function formatArgentineDateTime(isoString: string): string {
@@ -74,14 +75,14 @@ export default function CatchDetailScreen() {
           onPress={() => router.back()}
           activeOpacity={0.7}
         >
-          <Ionicons name="chevron-back" size={22} color={Colors.offWhite} />
+          <Ionicons name="chevron-back" size={20} color={Colors.white} />
           <Text style={styles.backText}>Volver</Text>
         </TouchableOpacity>
       </View>
 
       {loading && (
         <View style={styles.centered}>
-          <ActivityIndicator color={Colors.yellow} size="large" />
+          <ActivityIndicator color={Colors.primary} size="large" />
         </View>
       )}
 
@@ -150,20 +151,22 @@ const styles = StyleSheet.create({
   },
   navBar: {
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    paddingVertical: 14,
+    backgroundColor: Colors.secondary,
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
     alignSelf: 'flex-start',
+    paddingVertical: 4,
+    paddingHorizontal: 2,
   },
   backText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
-    color: Colors.offWhite,
+    fontSize: 15,
+    color: Colors.white,
+    fontWeight: '500',
   },
   centered: {
     flex: 1,
@@ -184,23 +187,27 @@ const styles = StyleSheet.create({
   },
   heroSection: {
     marginBottom: 20,
+    paddingVertical: 8,
   },
   lineaHero: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 96,
-    color: Colors.yellow,
+    color: Colors.secondary,
     lineHeight: 98,
   },
   badgeContainer: {
     marginTop: 4,
   },
   detailsCard: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 12,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
     padding: 20,
     marginBottom: 12,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   detailRow: {
     flexDirection: 'row',
@@ -212,7 +219,7 @@ const styles = StyleSheet.create({
   detailDivider: {
     width: 1,
     height: 48,
-    backgroundColor: Colors.cardBorder,
+    backgroundColor: Colors.border,
     marginHorizontal: 16,
   },
   detailLabel: {
@@ -221,20 +228,24 @@ const styles = StyleSheet.create({
     color: Colors.muted,
     letterSpacing: 1.5,
     marginBottom: 4,
+    fontWeight: '600',
   },
   detailValue: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 36,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     lineHeight: 38,
   },
   metaCard: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 12,
-    padding: 16,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    padding: 18,
     marginBottom: 12,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   metaLabel: {
     fontFamily: 'DMSans_400Regular',
@@ -242,26 +253,32 @@ const styles = StyleSheet.create({
     color: Colors.muted,
     letterSpacing: 1.5,
     marginBottom: 6,
+    fontWeight: '600',
   },
   metaValue: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 15,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     lineHeight: 22,
     textTransform: 'capitalize',
   },
   notesCard: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 12,
-    padding: 16,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    padding: 18,
     marginBottom: 12,
+    borderLeftWidth: 3,
+    borderLeftColor: Colors.primary,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   notesText: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 15,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     lineHeight: 22,
     fontStyle: 'italic',
   },
@@ -272,6 +289,6 @@ const styles = StyleSheet.create({
   idText: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 12,
-    color: Colors.cardBorder,
+    color: Colors.border,
   },
 });

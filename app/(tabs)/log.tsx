@@ -11,21 +11,21 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  FlatList,
 } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { logCatch, getDistinctLineas } from '../../lib/db';
 import StampAnimation from '../../components/StampAnimation';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  cardBg: '#FFFFFF',
+  border: '#DDE8E2',
+  muted: '#9BB5A8',
 };
 
 export default function LogScreen() {
@@ -138,6 +138,7 @@ export default function LogScreen() {
           >
             <View style={styles.header}>
               <Text style={styles.title}>REGISTRAR VIAJE</Text>
+              <Text style={styles.headerSub}>Anotá tu próximo catch</Text>
             </View>
 
             <View style={styles.form}>
@@ -221,7 +222,7 @@ export default function LogScreen() {
               <TouchableOpacity
                 style={styles.registerButton}
                 onPress={handleRegister}
-                activeOpacity={0.8}
+                activeOpacity={0.85}
               >
                 <Text style={styles.registerButtonText}>REGISTRAR</Text>
               </TouchableOpacity>
@@ -257,21 +258,26 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    paddingHorizontal: 24,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: Colors.secondary,
   },
   title: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 36,
-    color: Colors.offWhite,
+    fontSize: 38,
+    color: Colors.accent,
     letterSpacing: 1,
+  },
+  headerSub: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: 13,
+    color: Colors.primary,
+    marginTop: 2,
   },
   form: {
     padding: 20,
-    gap: 20,
+    gap: 18,
   },
   fieldWrapper: {
     position: 'relative',
@@ -279,72 +285,88 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 11,
-    color: Colors.muted,
+    color: Colors.secondary,
     letterSpacing: 1.5,
     marginBottom: 8,
+    fontWeight: '600',
   },
   input: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 8,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
+    backgroundColor: Colors.white,
+    borderWidth: 1.5,
+    borderColor: Colors.border,
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
     fontFamily: 'DMSans_400Regular',
     fontSize: 16,
-    color: Colors.offWhite,
+    color: Colors.secondary,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 1,
   },
   notesInput: {
     minHeight: 90,
-    paddingTop: 12,
+    paddingTop: 14,
   },
   suggestionsContainer: {
     position: 'absolute',
     top: '100%',
     left: 0,
     right: 0,
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.yellow,
-    borderRadius: 8,
+    backgroundColor: Colors.white,
+    borderWidth: 1.5,
+    borderColor: Colors.primary,
+    borderRadius: 16,
     zIndex: 999,
     overflow: 'hidden',
-    marginTop: 2,
+    marginTop: 4,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 6,
   },
   suggestionItem: {
-    paddingHorizontal: 14,
+    paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    borderBottomColor: Colors.border,
   },
   suggestionText: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 20,
-    color: Colors.yellow,
+    fontSize: 22,
+    color: Colors.secondary,
   },
   errorContainer: {
-    backgroundColor: 'rgba(232, 101, 26, 0.15)',
-    borderWidth: 1,
-    borderColor: Colors.orange,
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: 'rgba(180, 102, 23, 0.1)',
+    borderWidth: 1.5,
+    borderColor: Colors.tertiary,
+    borderRadius: 16,
+    padding: 14,
   },
   errorText: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 14,
-    color: Colors.orange,
+    color: Colors.tertiary,
   },
   registerButton: {
-    backgroundColor: Colors.yellow,
-    borderRadius: 8,
-    paddingVertical: 16,
+    backgroundColor: Colors.primary,
+    borderRadius: 20,
+    paddingVertical: 18,
     alignItems: 'center',
     marginTop: 4,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 6,
   },
   registerButtonText: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 28,
-    color: '#000',
+    color: Colors.white,
     letterSpacing: 2,
   },
 });

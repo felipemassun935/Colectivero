@@ -2,14 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  muted: '#9BB5A8',
 };
 
 interface LineaCardProps {
@@ -21,47 +20,67 @@ interface LineaCardProps {
 
 export default function LineaCard({ linea, unidadCount, catchCount, onPress }: LineaCardProps) {
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.75} onPress={onPress}>
+    <TouchableOpacity style={styles.card} activeOpacity={0.8} onPress={onPress}>
       <Text style={styles.lineaNumber}>{linea}</Text>
-      <Text style={styles.unidades}>
-        {unidadCount} {unidadCount === 1 ? 'unidad' : 'unidades'}
-      </Text>
-      <Text style={styles.catches}>
-        {catchCount} {catchCount === 1 ? 'viaje' : 'viajes'}
-      </Text>
+      <View style={styles.footer}>
+        <Text style={styles.unidades}>
+          {unidadCount} {unidadCount === 1 ? 'unidad' : 'unidades'}
+        </Text>
+        <View style={styles.pill}>
+          <Text style={styles.pillText}>
+            {catchCount}
+          </Text>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 12,
-    padding: 16,
+    backgroundColor: Colors.secondary,
+    borderRadius: 20,
+    padding: 18,
     flex: 1,
-    margin: 5,
+    margin: 6,
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
-    minHeight: 130,
+    minHeight: 140,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 6,
   },
   lineaNumber: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 56,
-    color: Colors.yellow,
-    lineHeight: 58,
-    marginBottom: 4,
+    fontSize: 58,
+    color: Colors.accent,
+    lineHeight: 60,
+    marginBottom: 8,
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   unidades: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 13,
-    color: Colors.offWhite,
-    marginBottom: 2,
+    fontSize: 12,
+    color: Colors.primary,
   },
-  catches: {
-    fontFamily: 'DMSans_400Regular',
-    fontSize: 11,
-    color: Colors.muted,
+  pill: {
+    backgroundColor: Colors.primary,
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    minWidth: 28,
+    alignItems: 'center',
+  },
+  pillText: {
+    fontFamily: 'BebasNeue_400Regular',
+    fontSize: 14,
+    color: Colors.white,
   },
 });

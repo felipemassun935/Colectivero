@@ -15,14 +15,15 @@ import LineaCard from '../../components/LineaCard';
 import CatchCard from '../../components/CatchCard';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  cardBg: '#FFFFFF',
+  border: '#DDE8E2',
+  muted: '#9BB5A8',
 };
 
 interface LineaSummary {
@@ -75,17 +76,6 @@ export default function HomeScreen() {
     setLineaCatches([]);
   }
 
-  function renderLinea({ item, index }: { item: LineaSummary; index: number }) {
-    return (
-      <LineaCard
-        linea={item.linea}
-        unidadCount={item.unidadCount}
-        catchCount={item.catchCount}
-        onPress={() => openLineaDetail(item.linea)}
-      />
-    );
-  }
-
   function renderPair({ item }: { item: LineaSummary[] }) {
     return (
       <View style={styles.row}>
@@ -119,14 +109,16 @@ export default function HomeScreen() {
         <Text style={styles.title}>COLECTIVERO</Text>
         {lineas.length > 0 && (
           <Text style={styles.subtitle}>
-            {lineas.length} {lineas.length === 1 ? 'línea' : 'líneas'}
+            {lineas.length} {lineas.length === 1 ? 'línea' : 'líneas'} en tu colección
           </Text>
         )}
       </View>
 
       {lineas.length === 0 ? (
         <View style={styles.emptyState}>
-          <Text style={styles.emptyEmoji}>🚌</Text>
+          <View style={styles.emptyIconContainer}>
+            <Text style={styles.emptyEmoji}>🚌</Text>
+          </View>
           <Text style={styles.emptyTitle}>Ningún colectivo registrado todavía.</Text>
           <Text style={styles.emptySubtitle}>Empezá registrando tu primer viaje.</Text>
         </View>
@@ -149,7 +141,7 @@ export default function HomeScreen() {
         <SafeAreaView style={styles.modalContainer}>
           <View style={styles.modalHeader}>
             <TouchableOpacity onPress={closeModal} style={styles.backButton}>
-              <Ionicons name="chevron-down" size={22} color={Colors.offWhite} />
+              <Ionicons name="chevron-down" size={22} color={Colors.white} />
             </TouchableOpacity>
             <Text style={styles.modalLinea}>{selectedLinea}</Text>
             <Text style={styles.modalCount}>
@@ -175,35 +167,34 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    paddingHorizontal: 24,
+    paddingTop: 20,
+    paddingBottom: 16,
+    backgroundColor: Colors.secondary,
   },
   title: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 42,
-    color: Colors.yellow,
+    fontSize: 44,
+    color: Colors.accent,
     letterSpacing: 2,
   },
   subtitle: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 13,
-    color: Colors.muted,
+    color: Colors.primary,
     marginTop: 2,
   },
   grid: {
-    padding: 10,
-    paddingBottom: 20,
+    padding: 12,
+    paddingBottom: 24,
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   emptyCard: {
     flex: 1,
-    margin: 5,
+    margin: 6,
   },
   emptyState: {
     flex: 1,
@@ -211,16 +202,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 40,
   },
+  emptyIconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: Colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 4,
+  },
   emptyEmoji: {
-    fontSize: 72,
-    marginBottom: 20,
+    fontSize: 48,
   },
   emptyTitle: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 18,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     textAlign: 'center',
     marginBottom: 8,
+    fontWeight: '600',
   },
   emptySubtitle: {
     fontFamily: 'DMSans_400Regular',
@@ -233,26 +238,31 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   modalHeader: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
     paddingTop: 16,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    paddingBottom: 20,
+    backgroundColor: Colors.secondary,
   },
   backButton: {
-    marginBottom: 8,
+    marginBottom: 12,
     alignSelf: 'flex-start',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalLinea: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 72,
-    color: Colors.yellow,
+    color: Colors.accent,
     lineHeight: 74,
   },
   modalCount: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 13,
-    color: Colors.muted,
+    color: Colors.primary,
     marginTop: 2,
   },
   modalList: {

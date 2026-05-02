@@ -11,14 +11,15 @@ import { getStats, Stats } from '../../lib/db';
 import CatchCard from '../../components/CatchCard';
 
 const Colors = {
-  bg: '#0D0D0D',
-  yellow: '#F5C518',
-  orange: '#E8651A',
-  offWhite: '#F0EDE8',
-  cardBg: '#1A1A1A',
-  cardBorder: '#2A2A2A',
-  muted: '#666',
-  duplicate: '#E8651A',
+  bg: '#F2F7F4',
+  primary: '#6D9773',
+  secondary: '#0C3B2E',
+  tertiary: '#B46617',
+  accent: '#FFBA00',
+  white: '#FFFFFF',
+  cardBg: '#FFFFFF',
+  border: '#DDE8E2',
+  muted: '#9BB5A8',
 };
 
 interface StatCardProps {
@@ -57,9 +58,12 @@ export default function StatsScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>ESTADÍSTICAS</Text>
+          <Text style={styles.headerSub}>Tu historial de viajes</Text>
         </View>
         <View style={styles.emptyState}>
-          <Text style={styles.emptyEmoji}>📊</Text>
+          <View style={styles.emptyIconContainer}>
+            <Text style={styles.emptyEmoji}>📊</Text>
+          </View>
           <Text style={styles.emptyTitle}>Sin datos todavía.</Text>
           <Text style={styles.emptySubtitle}>
             Registrá tu primer viaje para ver estadísticas.
@@ -78,6 +82,7 @@ export default function StatsScreen() {
       >
         <View style={styles.header}>
           <Text style={styles.title}>ESTADÍSTICAS</Text>
+          <Text style={styles.headerSub}>Tu historial de viajes</Text>
         </View>
 
         <View style={styles.section}>
@@ -140,17 +145,22 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.cardBorder,
+    paddingHorizontal: 24,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: Colors.secondary,
   },
   title: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 36,
-    color: Colors.offWhite,
+    fontSize: 38,
+    color: Colors.accent,
     letterSpacing: 1,
+  },
+  headerSub: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: 13,
+    color: Colors.primary,
+    marginTop: 2,
   },
   section: {
     paddingHorizontal: 20,
@@ -158,33 +168,36 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.muted,
-    letterSpacing: 1.5,
+    letterSpacing: 2,
     marginBottom: 12,
   },
   statsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    gap: 12,
   },
   statCard: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 10,
-    padding: 16,
-    width: '47.5%',
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    padding: 18,
+    width: '47%',
     alignItems: 'flex-start',
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   statValue: {
     fontFamily: 'BebasNeue_400Regular',
-    fontSize: 40,
-    color: Colors.offWhite,
-    lineHeight: 42,
+    fontSize: 42,
+    color: Colors.secondary,
+    lineHeight: 44,
   },
   statValueAccent: {
-    color: Colors.yellow,
+    color: Colors.tertiary,
   },
   statLabel: {
     fontFamily: 'DMSans_400Regular',
@@ -192,36 +205,45 @@ const styles = StyleSheet.create({
     color: Colors.muted,
     letterSpacing: 1,
     marginTop: 4,
+    fontWeight: '600',
   },
   featuredCard: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.yellow,
-    borderRadius: 12,
-    padding: 20,
+    backgroundColor: Colors.secondary,
+    borderRadius: 24,
+    padding: 24,
     alignItems: 'flex-start',
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 8,
   },
   featuredLinea: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 80,
-    color: Colors.yellow,
+    color: Colors.accent,
     lineHeight: 82,
   },
   featuredLabel: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 13,
-    color: Colors.muted,
+    color: Colors.primary,
     marginTop: 2,
   },
   streakBanner: {
-    backgroundColor: Colors.cardBg,
-    borderWidth: 1,
-    borderColor: Colors.cardBorder,
-    borderRadius: 12,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: Colors.accent,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   streakFire: {
     fontSize: 40,
@@ -232,13 +254,13 @@ const styles = StyleSheet.create({
   streakNumber: {
     fontFamily: 'BebasNeue_400Regular',
     fontSize: 48,
-    color: Colors.orange,
+    color: Colors.tertiary,
     lineHeight: 50,
   },
   streakLabel: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 14,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     marginTop: 2,
   },
   emptyState: {
@@ -247,16 +269,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 40,
   },
+  emptyIconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: Colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+    shadowColor: Colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 4,
+  },
   emptyEmoji: {
-    fontSize: 60,
-    marginBottom: 20,
+    fontSize: 44,
   },
   emptyTitle: {
     fontFamily: 'DMSans_400Regular',
     fontSize: 18,
-    color: Colors.offWhite,
+    color: Colors.secondary,
     textAlign: 'center',
     marginBottom: 8,
+    fontWeight: '600',
   },
   emptySubtitle: {
     fontFamily: 'DMSans_400Regular',
